@@ -1,0 +1,311 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #ffe2e6;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Countdown at top-right */
+#countdown {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ffb6c1;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 10;
+}
+
+/* Countdown inside the Countdown Panel */
+.countdownPanelDisplay {
+  margin-top: 30px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #ff6b81;
+  background: #fff0f5;
+  padding: 30px 50px;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  width: fit-content;
+}
+
+/* Hero image */
+#hero {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#scrollingContainer {
+  width: 100%;
+  overflow: hidden;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#scrollingImages {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: scrollLeft 20s linear infinite;
+}
+
+#scrollingImages img {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Letters at bottom */
+.letter {
+  background: #fff9f0;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.letter:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+#newYearLetter {
+  display: none;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #ff6b81;
+  background: #fff0f5;
+  padding: 25px 40px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+/* Opening screen */
+#openingScreen {
+  position: fixed;
+  inset: 0;
+  background: url('op.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 100;
+  text-align: center;
+  transition: opacity 0.8s;
+}
+
+#openingScreen button {
+  padding: 12px 30px;
+  font-size: 18px;
+  background: #ffb6c1;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Fullscreen panel */
+.fullscreenPanel {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffe2e6;
+  padding: 60px 40px 40px 40px;
+  box-sizing: border-box;
+  z-index: 150;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.fullscreenPanel .panelContent {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Ensure buttons are always on top */
+#actionButtons {
+  position: fixed;
+  top: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  transition: top 0.5s ease;
+}
+
+#actionButtons button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background: #ffb6c1;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+#actionButtons button:hover {
+  transform: scale(1.1);
+  background: #ff6b81;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* slightly smaller for mobile */
+  }
+
+  #hero {
+    max-height: 200px; /* shrink hero image */
+  }
+
+  #scrollingContainer {
+    height: 120px;
+  }
+
+  #scrollingImages img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+
+  #actionButtons {
+    flex-direction: column; /* stack buttons vertically */
+    top: auto;
+    bottom: 20px; /* place at bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  #actionButtons button {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .fullscreenPanel {
+    padding: 40px 20px;
+  }
+
+  .fullscreenPanel .panelContent {
+    width: 95%;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .letters {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  #newYearLetter {
+    font-size: 16px;
+    padding: 20px;
+  }
+
+  #openingScreen .opening-content h1 {
+    font-size: 28px;
+  }
+
+  #openingScreen .opening-content p {
+    font-size: 16px;
+  }
+
+  #openingScreen button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  #scrollingContainer {
+    height: 100px;
+  }
+
+  #scrollingImages img {
+    width: 80px;
+    height: 80px;
+    margin-right: 8px;
+  }
+
+  #actionButtons button {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .fullscreenPanel .panelContent {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .musicList li {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+/* Portrait video horizontal layout */
+.fullscreenPanel .videoList {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
+  width: 100%;
+  scroll-snap-type: x mandatory;
+}
+
+/* Individual videos */
+.fullscreenPanel .videoList video {
+  width: 240px;          /* portrait width */
+  height: 430px;         /* portrait height */
+  flex-shrink: 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  scroll-snap-align: center;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .fullscreenPanel .videoList video {
+    width: 200px;
+    height: 360px;
+  }
+}
